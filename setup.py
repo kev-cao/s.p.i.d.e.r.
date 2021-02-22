@@ -12,8 +12,8 @@ if __name__ == '__main__':
     print('Welcome to the Stocks Program for Investing Dogecoin when Elon Retweets (S.P.I.D.E.R)!')
     print('This program uses the Robinhood API, so you will need a Robinhood account to continue.\n')
     print('If you have an account, please enter your credentials below:')
-    config['username'] = input('Username (or Email): ')
-    config['password'] = input('Password: ')
+    config['rh_username'] = input('Username (or Email): ')
+    config['rh_password'] = input('Password: ')
 
     clear_term()
     print('The program uses Pushbullet as the service to send you a mobile push notification whenever Elon tweets.')
@@ -22,10 +22,11 @@ if __name__ == '__main__':
 
     clear_term()
     print('The program also needs to be able to access the Twitter API. To do so, you will need a developer account with Twitter (apply for one here: https://developer.twitter.com/en/portal/petition).\n')
-    print('Once you have a developer account, create a Twitter app from the developer console and retrieve your consumer key and consumer secret.\n')
+    print('Once you have a developer account, create a Twitter app from the developer console and retrieve your consumer key, consumer secret, and bearer token.\n')
 
     config['tw_key'] = input('Consumer Key: ')
     config['tw_secret'] = input('Consumer Secret: ')
+    config['tw_bearer'] = input('Bearer Token: ')
 
     with open('config.json', 'w') as f:
         json.dump(config, f, indent=4)

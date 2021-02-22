@@ -1,14 +1,17 @@
 import json
 import os
+from utils.file_manager import save_config, save_cache
 
 def clear_term():
     """Clears the terminal."""
     os.system('cls' if os.name =='nt' else 'clear')
 
 if __name__ == '__main__':
+    # Config is saved to file for persistent storage.
     config = {}
     clear_term()
 
+    # Get information needed for config file.
     print('Welcome to the Stocks Program for Investing Dogecoin when Elon Retweets (S.P.I.D.E.R)!')
     print('This program uses the Robinhood API, so you will need a Robinhood account to continue.\n')
     print('If you have an account, please enter your credentials below:')
@@ -28,8 +31,13 @@ if __name__ == '__main__':
     config['tw_secret'] = input('Consumer Secret: ')
     config['tw_bearer'] = input('Bearer Token: ')
 
-    with open('config.json', 'w') as f:
-        json.dump(config, f, indent=4)
+    save_config(config)
+
+    # Setting up cache for determining latest processed tweet.
+    cache = {}
+    cache['last_tweet_id'] = None
+
+    save_cache(cache)
 
     clear_term()
     print('Your configuration settings have been saved. You may now start the script.')

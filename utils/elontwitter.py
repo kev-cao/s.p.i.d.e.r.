@@ -1,5 +1,4 @@
 import requests
-from config import load_config
 
 class ElonTwitter:
     """
@@ -54,18 +53,10 @@ class ElonTwitter:
         Retrieves tweets from Elon's timeline.
 
         Params:
-        - since_id (string, optional) : Limits tweets to all tweets after the tweet with this ID.
+        - since_id (int | string, optional) : Limits tweets to all tweets after the tweet with this ID.
 
         Returns:
         - (list of obj) : List of Tweet objects.
         """
-        params = {'user_id': '44196397', 'screen_name': 'elonmusk'}
+        params = {'user_id': '44196397', 'screen_name': 'elonmusk', 'since_id': since_id}
         return self._connect_to_get_endpoint('/statuses/user_timeline.json', params)
-
-
-
-
-if __name__ == '__main__':
-    config = load_config()
-    elontw = ElonTwitter(config['tw_key'], config['tw_secret'], config['tw_bearer'])
-    print([tweet['text'] for tweet in elontw.get_elon_timeline()])

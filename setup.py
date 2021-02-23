@@ -1,6 +1,7 @@
 import json
 import os
 from utils.file_manager import save_config, save_cache
+from utils.robinhood import RobinhoodAPI
 
 def clear_term():
     """Clears the terminal."""
@@ -17,6 +18,10 @@ if __name__ == '__main__':
     print('If you have an account, please enter your credentials below:')
     config['rh_username'] = input('Username (or Email): ')
     config['rh_password'] = input('Password: ')
+
+    print('\nYou will need to enable two-factor authentication on your Robinhood account, and set your authentication method to "other".')
+    print('You will be given a MFA key. Please enter it here.')
+    config['rh_mfa'] = input('MFA Key: ')
 
     clear_term()
     print('The program uses Pushbullet as the service to send you a mobile push notification whenever Elon tweets.')

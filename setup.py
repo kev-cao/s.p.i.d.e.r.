@@ -41,5 +41,3 @@ if __name__ == '__main__':
 
     clear_term()
     print('Your configuration settings have been saved. You may now start the script.')
-
-

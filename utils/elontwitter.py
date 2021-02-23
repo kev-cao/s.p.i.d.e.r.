@@ -58,5 +58,18 @@ class ElonTwitter:
         Returns:
         - (list of obj) : List of Tweet objects.
         """
-        params = {'user_id': '44196397', 'screen_name': 'elonmusk', 'since_id': since_id}
+        params = {'user_id': '999498208492638208', 'screen_name': 'defCoding', 'since_id': since_id}
         return self._connect_to_get_endpoint('/statuses/user_timeline.json', params)
+
+    def is_doge_tweet(self, tweet):
+        """
+        Determines if a tweet references doge.
+
+        Params:
+        - tweet (obj) : Tweet object to parse.
+
+        Returns:
+        - (bool) : True/False if tweet references doge.
+        """
+        text = tweet['text'].lower()
+        return 'doge' in text or 'crypto' in text

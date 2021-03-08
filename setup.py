@@ -23,7 +23,10 @@ if __name__ == '__main__':
     print('You will be given a MFA key. Please enter it here.')
     config['rh_mfa'] = input('MFA Key: ')
 
+    print('We will attempt to connect to your Robinhood account now. Please enter your authentication code when prompted.')
+    RobinhoodAPI(config['rh_username'], config['rh_password'], config['rh_mfa'])
     clear_term()
+
     print('The program uses Pushbullet as the service to send you a mobile push notification whenever Elon tweets.')
     print('To use Pushbullet, the program needs your Pushbullet Access Token. You can find instructions on how to find the token here: https://docs.pushbullet.com/v1/#http\n')
     config['pb_token'] = input('Token: ')
@@ -36,13 +39,34 @@ if __name__ == '__main__':
     config['tw_secret'] = input('Consumer Secret: ')
     config['tw_bearer'] = input('Bearer Token: ')
 
-    save_config(config)
+    clear_term()
+    print('Time to set limits on the investment amounts.')
+    print('What percentage of your buying power would you like to use per investment?')
+    
+    percentage = float(input('Enter a percentage (0 - 100): '))
+    if not (0 <= percentage <= 100):
+        raise Exception('Not a valid percentage.')
+
+    config['investment_percentage'] = percentage / 100
+
+    print('What is the absolute cap you would like to set per investment in USD?')
+    cap = input('Enter a cap (leave empty for no hard cap): $')
+
+    if cap == '':
+        cap = None
+    else:
+        cap = float(cap)
+        if cap <= 0:
+            raise Exception('The cap must be a positive nonzero value.')
+
+    config['investment_cap'] = cap
 
     # Setting up cache for determining latest processed tweet.
     cache = {}
     cache['last_tweet_id'] = None
 
     save_cache(cache)
+    save_config(config)
 
     clear_term()
     print('Your configuration settings have been saved. You may now start the script.')

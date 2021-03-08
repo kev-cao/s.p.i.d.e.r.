@@ -44,7 +44,7 @@ class ElonTwitter:
             response = session.get(f'{self.base_url}/{endpoint}', params=params)
 
         if response.status_code != 200:
-            return Exception(response.status_code, response.text)
+            raise Exception(response.status_code, response.text)
 
         return response.json()
 
@@ -58,7 +58,7 @@ class ElonTwitter:
         Returns:
         - (list of obj) : List of Tweet objects.
         """
-        params = {'user_id': '999498208492638208', 'screen_name': 'defCoding', 'since_id': since_id}
+        params = {'user_id': '44196397', 'screen_name': 'elonmusk', 'since_id': since_id}
         return self._connect_to_get_endpoint('/statuses/user_timeline.json', params)
 
     def is_doge_tweet(self, tweet):

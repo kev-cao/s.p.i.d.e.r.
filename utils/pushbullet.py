@@ -30,3 +30,5 @@ def send_push(tweet):
     
     if res.status_code != 200:
         raise ConnectionError(res.text)
+
+

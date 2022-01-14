@@ -12,6 +12,9 @@ I had recently gotten into stocks a bit, and was messing around with Dogecoin fo
 ## What does it do?
 When you run the script once, it checks the latest tweets from Elon and searches for any mention of "doge" or "crypto" - if it detects such a tweet, it sends a push notification to your mobile device using the Pushbullet API detailing the contents of the tweet, and then invests a set percentage of your available buying power into Dogecoin through Robinhood. I run this script every minute using a cronjob.
 
+## Does it work?
+It works in the sense that when Elon tweets something about Dogecoin or crypto, it will automatically invest in Dogecoin. If you're asking if it works in the sense that you gain money, I can make no guarantees. I put in a lot of effort to make sure that the maximum amount of money that can be invested can be set by the user, so you likely won't go bankrupt (unless you decide to make yourself go bankrupt). As a vote of confidence, I no longer have this program running on my computer. In other words, to be more explicit, do NOT think, for even a moment, that this program will make you money. In fact, you will likely lose money. I certainly did.
+
 ## How to Setup
 This program uses Pushbullet and its API to send push notifications, so you will need to set up an account on Pushbullet. Once you are there, copy down your Pushbullet access token from [account settings](https://www.pushbullet.com/#settings) (you need to keep this secret).
 
